@@ -3,32 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F4F0E8" />
   <title>Perfimmo — Performance commerciale pour agences immobilières</title>
   <meta name="description" content="Perfimmo audite vos pratiques commerciales et votre CRM pour transformer vos agents en closers. Diagnostic, transformation et suivi pour agences de 5 à 20 agents." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
   <!-- ext-resource-dependency: three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
+  <!-- ============ GRAIN OVERLAY ============ -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="pl-inner">
+      <div class="pl-logo">
+        <span class="pl-mark">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect x="1.5" y="1.5" width="37" height="37" rx="9" fill="#B0552E" class="pl-rect"/>
+            <text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-family="'Playfair Display', serif" font-weight="700" font-size="26" fill="#FBF9F3" class="pl-p">P</text>
+          </svg>
+        </span>
+        <span class="pl-word">Perf<b>immo</b></span>
+      </div>
+      <div class="pl-bar"><span class="pl-fill" id="pl-fill"></span></div>
+      <div class="pl-count"><span id="pl-num">0</span><span class="pl-pct">%</span></div>
+    </div>
+  </div>
+
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
-      <a href="#hero" class="logo" aria-label="Perfimmo accueil">
+      <a href="#hero" class="logo" data-magnetic aria-label="Perfimmo accueil">
         <span class="mark" aria-hidden="true">
           <svg viewBox="0 0 32 32" fill="none">
-            <rect x="1" y="1" width="30" height="30" rx="3" stroke="#C9A84C" stroke-width="1.4"/>
-            <path d="M9 23V9h6.2c3 0 5 1.8 5 4.6 0 2.8-2 4.7-5 4.7H12.4V23H9z" fill="#C9A84C"/>
+            <rect x="1" y="1" width="30" height="30" rx="7" fill="#B0552E"/>
+            <text x="16" y="17" text-anchor="middle" dominant-baseline="central" font-family="'Playfair Display', serif" font-weight="700" font-size="21" fill="#FBF9F3">P</text>
           </svg>
         </span>
         Perf<b>immo</b>
       </a>
       <nav class="nav-links" aria-label="Navigation principale">
-        <a href="#method" class="link">Méthode</a>
-        <a href="#offers" class="link">Offres</a>
-        <a href="#contact" class="link">Contact</a>
+        <a href="#method" class="link"><span>Méthode</span></a>
+        <a href="#offers" class="link"><span>Offres</span></a>
+        <a href="#faq" class="link"><span>FAQ</span></a>
+        <a href="#contact" class="link"><span>Contact</span></a>
       </nav>
-      <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold nav-cta">Prendre RDV</a>
+      <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold nav-cta" data-magnetic>Prendre RDV</a>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -39,6 +64,7 @@
   <div class="mobile-menu" id="mobile-menu">
     <a href="#method">Méthode</a>
     <a href="#offers">Offres</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
     <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Prendre RDV</a>
   </div>
@@ -47,11 +73,15 @@
   <section class="hero" id="hero" data-screen-label="Hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="wrap hero-content">
-      <h1>Vous perdez des ventes.<br /><span class="accent">On va les récupérer.</span></h1>
-      <p class="sub">Perfimmo audite vos pratiques commerciales et votre CRM pour transformer vos agents en closers.</p>
-      <div class="hero-ctas">
-        <a href="#offers" class="btn btn-gold btn-lg">Voir nos offres <span class="arrow">→</span></a>
-        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Prendre RDV</a>
+      <p class="hero-eyebrow anim-fade">Conseil en performance commerciale · Agences immobilières</p>
+      <h1 class="hero-title">
+        <span class="ln"><span class="ln-in">Vous perdez des ventes.</span></span>
+        <span class="ln"><span class="ln-in accent">On va les récupérer.</span></span>
+      </h1>
+      <p class="sub anim-fade">Vos agents travaillent. Les mandats partent quand même chez le concurrent. C'est un problème de méthode et de CRM mal utilisé — pas de motivation.</p>
+      <div class="hero-ctas anim-fade">
+        <a href="#offers" class="btn btn-gold btn-lg" data-magnetic>Voir nos offres <span class="arrow">→</span></a>
+        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-magnetic>Prendre RDV</a>
       </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
@@ -60,28 +90,61 @@
     </div>
   </section>
 
+  <!-- ============ CRM MARQUEE ============ -->
+  <section class="marquee-sec" aria-label="Compatibilité CRM">
+    <div class="wrap">
+      <p class="marquee-label reveal">Quel que soit votre logiciel, on l'optimise</p>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Apimo</span><span class="sep">·</span><span>Modelo</span><span class="sep">·</span><span>Netty</span><span class="sep">·</span><span>Immofacile</span><span class="sep">·</span><span>Hektor</span><span class="sep">·</span>
+        <span>Apimo</span><span class="sep">·</span><span>Modelo</span><span class="sep">·</span><span>Netty</span><span class="sep">·</span><span>Immofacile</span><span class="sep">·</span><span>Hektor</span><span class="sep">·</span>
+        <span>Apimo</span><span class="sep">·</span><span>Modelo</span><span class="sep">·</span><span>Netty</span><span class="sep">·</span><span>Immofacile</span><span class="sep">·</span><span>Hektor</span><span class="sep">·</span>
+        <span>Apimo</span><span class="sep">·</span><span>Modelo</span><span class="sep">·</span><span>Netty</span><span class="sep">·</span><span>Immofacile</span><span class="sep">·</span><span>Hektor</span><span class="sep">·</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SECTION 2 — PROBLÈME ============ -->
   <section class="section problem" id="problem" data-screen-label="Problème">
     <div class="wrap">
-      <p class="eyebrow reveal">Le coût de l'inaction</p>
+      <p class="eyebrow reveal">Les hémorragies</p>
       <h2 class="stat-headline reveal d1">
         Une agence de 10 agents qui perd 2-3 mandats par mois, c'est
-        <span class="hl">20 000 à 40 000 €</span> envolés. Chaque mois.
+        <span class="hl">20 000 à 40 000 €</span> de commission envolée. Chaque mois. Sans le voir partir.
       </h2>
       <p class="stat-sub reveal d2">Le problème n'est presque jamais le marché. C'est ce qui se passe entre le contact et la signature.</p>
+
+      <div class="stat-band">
+        <div class="stat-item reveal">
+          <div class="stat-num" data-count="40" data-suffix=" k€" data-prefix="">0</div>
+          <p>de commission perdue chaque mois, pour une agence de 10 agents.</p>
+        </div>
+        <div class="stat-item reveal d1">
+          <div class="stat-num" data-count="30" data-suffix=" %">0</div>
+          <p>des capacités du CRM réellement exploitées par vos agents.</p>
+        </div>
+        <div class="stat-item reveal d2">
+          <div class="stat-num" data-count="1" data-suffix=" vente">0</div>
+          <p>récupérée suffit à rentabiliser le Diagnostic Perfimmo.</p>
+        </div>
+      </div>
 
       <div class="pain-grid">
         <article class="pain-card reveal">
           <div class="pain-num">01</div>
-          <p>Votre CRM est <span class="pc-strong">mal configuré</span>. Vos agents l'utilisent à 30 % de ses capacités.</p>
+          <h3 class="pain-title">Vos mandats s'échappent</h3>
+          <p>Pas de relance vendeur structurée. Vos estimations en cours restent sans suivi. Le concurrent plus réactif signe à votre place.</p>
         </article>
         <article class="pain-card reveal d1">
           <div class="pain-num">02</div>
-          <p>Vos relances sont <span class="pc-strong">aléatoires</span>. Les mandats partent chez le concurrent.</p>
+          <h3 class="pain-title">Vos acquéreurs disparaissent</h3>
+          <p>Pas de matching automatique biens/recherches. Pas de relance systématique. Le premier qui rappelle, c'est l'autre agence.</p>
         </article>
         <article class="pain-card reveal d2">
           <div class="pain-num">03</div>
-          <p>Vous n'avez <span class="pc-strong">pas de méthode commune</span>. Chaque agent fait à sa sauce.</p>
+          <h3 class="pain-title">Ce n'est pas un problème d'outil</h3>
+          <p>C'est un problème d'adoption et d'harmonisation. Chaque agent utilise le CRM à sa façon. Résultat&nbsp;: des données incomplètes, des leads dormants, des ventes invisibles.</p>
         </article>
       </div>
 
@@ -104,17 +167,17 @@
         <div class="progress-track" aria-hidden="true"></div>
 
         <div class="step">
-          <div class="dot">1</div>
+          <div class="dot"><span>1</span></div>
           <div class="body">
             <span class="ph-label">Phase 1</span>
             <h3>Découverte</h3>
-            <p>Visio de 45 minutes pour qualifier votre agence et cadrer la mission. On vérifie ensemble que l'on peut réellement faire bouger vos chiffres.</p>
+            <p>Visio de 45 minutes pour qualifier votre agence et cadrer la mission. On décide ensemble si l'on peut réellement faire bouger vos chiffres.</p>
             <span class="meta">45 min · à distance</span>
           </div>
         </div>
 
         <div class="step">
-          <div class="dot">2</div>
+          <div class="dot"><span>2</span></div>
           <div class="body">
             <span class="ph-label">Phase 2</span>
             <h3>Audit CRM</h3>
@@ -124,7 +187,7 @@
         </div>
 
         <div class="step">
-          <div class="dot">3</div>
+          <div class="dot"><span>3</span></div>
           <div class="body">
             <span class="ph-label">Phase 3</span>
             <h3>Audit terrain</h3>
@@ -134,17 +197,17 @@
         </div>
 
         <div class="step">
-          <div class="dot">4</div>
+          <div class="dot"><span>4</span></div>
           <div class="body">
             <span class="ph-label">Phase 4</span>
             <h3>Transformation</h3>
-            <p>Reconfiguration du CRM et méthodes commerciales structurées et documentées. Vos agents repartent avec un système clair, pas avec des bonnes intentions.</p>
+            <p>Reconfiguration du CRM, mise en place des automatisations, connexion d'outils tiers si pertinent (notes IA, relances automatiques, matching acquéreurs). Méthodes commerciales documentées pour toute l'équipe. Vos agents repartent avec un système, pas des bonnes intentions.</p>
             <span class="meta">livrables documentés</span>
           </div>
         </div>
 
         <div class="step">
-          <div class="dot">5</div>
+          <div class="dot"><span>5</span></div>
           <div class="body">
             <span class="ph-label">Phase 5</span>
             <h3>Suivi mensuel</h3>
@@ -176,25 +239,27 @@
           <ul class="feats">
             <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Phases 1, 2 et 3 de la méthode</li>
             <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Audit CRM + audit terrain</li>
-            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Rapport d'audit complet avec recommandations</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Rapport complet&nbsp;: pertes chiffrées + plan d'action priorisé</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost btn-block">Réserver le Diagnostic</a>
+          <a href="#contact" class="btn btn-ghost btn-block" data-magnetic>Réserver le Diagnostic</a>
         </article>
 
         <!-- Card 2 — featured -->
         <article class="card featured reveal d1">
           <h3 class="c-name">Pack Diagnostic + Transformation</h3>
-          <p class="c-tagline">La démarche complète, de A à Z</p>
+          <p class="c-tagline">De l'audit à l'implémentation, clé en main</p>
           <div class="c-price"><span class="amt">8 000 €</span><span class="unit">HT</span></div>
           <p class="c-dur">~ 10 jours</p>
           <div class="c-divider"></div>
           <ul class="feats">
             <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> La méthode complète en 5 phases</li>
-            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> CRM entièrement reconfiguré</li>
-            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Méthodes commerciales documentées</li>
-            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> <b style="color:var(--gold-bright);font-weight:600">1 mois de suivi offert</b></li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> CRM reconfiguré selon vos process</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Automatisations &amp; outils tiers connectés si pertinent (notes IA, relances auto, matching)</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Méthodes commerciales documentées pour l'équipe</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Formation équipe incluse</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> <b style="color:#D9885A;font-weight:600">1 mois de suivi offert</b></li>
           </ul>
-          <a href="#contact" class="btn btn-gold btn-block">Réserver le Pack</a>
+          <a href="#contact" class="btn btn-gold btn-block" data-magnetic>Réserver le Pack</a>
         </article>
 
         <!-- Card 3 -->
@@ -209,12 +274,12 @@
             <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajustements &amp; réponses à vos questions</li>
             <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 12l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Points de performance mensuels</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost btn-block">Me contacter</a>
+          <a href="#contact" class="btn btn-ghost btn-block" data-magnetic>Me contacter</a>
         </article>
       </div>
 
       <p class="transformation-note reveal">
-        Vous avez déjà fait votre diagnostic ailleurs ? La <b>Transformation seule</b> est disponible à <b>6 500 € HT</b> sur demande.
+        Vous avez déjà fait votre diagnostic ? La <b>Transformation seule</b> est disponible à <b>6 500 € HT</b> sur demande.
       </p>
     </div>
   </section>
@@ -228,12 +293,12 @@
       </div>
       <div class="why-text">
         <p class="eyebrow reveal">Pourquoi Perfimmo</p>
-        <h2 class="reveal d1">Ce n'est pas une formation. Ce n'est pas du support logiciel. C'est de la <em>performance commerciale.</em></h2>
+        <blockquote class="why-quote reveal d1">
+          <span class="qmark" aria-hidden="true">“</span>
+          Votre éditeur CRM vous apprend à utiliser les <em>boutons.</em><br />
+          Moi, je vous apprends à <em>vendre plus</em> avec.
+        </blockquote>
         <ul>
-          <li class="reveal d1">
-            <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v15M3 5l6-3 6 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <p>Votre éditeur CRM vous apprend à <b>utiliser le logiciel</b>. Moi, je vous apprends à <b>vendre plus avec.</b></p>
-          </li>
           <li class="reveal d2">
             <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 14l4-5 3 3 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <p>Intervention ciblée, <b>résultats mesurables</b>, ROI sur la première vente récupérée.</p>
@@ -251,13 +316,66 @@
     </div>
   </section>
 
+  <!-- ============ SECTION FAQ ============ -->
+  <section class="section faq" id="faq" data-screen-label="FAQ">
+    <div class="wrap faq-grid">
+      <div class="faq-aside">
+        <p class="eyebrow reveal">Questions fréquentes</p>
+        <h2 class="h-section reveal d1">Ce que les dirigeants nous demandent</h2>
+        <p class="lead reveal d2">Une question qui n'est pas ici&nbsp;? Écrivez-nous, on répond sous 24h.</p>
+        <a href="#contact" class="btn btn-ghost reveal d3" data-magnetic style="margin-top:28px;">Poser ma question <span class="arrow">→</span></a>
+      </div>
+      <div class="faq-list reveal d1">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span>En quoi est-ce différent d'une formation CRM ?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><p>Une formation vous apprend à cliquer sur les bons boutons. Nous, on reconfigure votre CRM, on structure vos méthodes commerciales et on les documente pour toute l'équipe. L'objectif n'est pas la maîtrise du logiciel&nbsp;: c'est le chiffre d'affaires récupéré.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span>Combien de temps avant de voir des résultats ?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><p>Le Diagnostic livre dès 2-3 jours une cartographie des pertes chiffrées et un plan d'action priorisé. La Transformation (~10 jours) met en place le système&nbsp;; les premiers effets sur les relances et le matching se mesurent dès les semaines suivantes.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span>Devez-vous changer notre logiciel ?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><p>Non. On part de votre CRM actuel et on l'exploite à fond — Apimo, Modelo, Netty, Immofacile, Hektor ou autre. Le problème est rarement l'outil&nbsp;: c'est son adoption et sa configuration.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span>Intervenez-vous partout en France ?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><p>Zone principale&nbsp;: PACA, déplacements inclus. Pour le reste de la France métropolitaine, l'accompagnement se fait à distance — l'audit CRM et le suivi sont de toute façon réalisés en visio.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span>Pour quelle taille d'agence ?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><p>Les agences de 5 à 20 agents, avec un dirigeant impliqué. En-dessous, l'impact est limité&nbsp;; au-dessus, l'organisation demande un cadrage spécifique — parlons-en.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SECTION 6 — CONTACT ============ -->
   <section class="section contact" id="contact" data-screen-label="Contact">
     <div class="wrap contact-grid">
 
       <!-- Form -->
       <div class="panel reveal">
-        <form id="contact-form" novalidate>
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hp-field" style="position:absolute;left:-9999px;" aria-hidden="true">
+            <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
           <h2>Une question ? Un projet ?</h2>
           <p class="p-sub">Parlez-nous de votre agence. On vous répond avec une première lecture, pas un argumentaire.</p>
 
@@ -305,25 +423,25 @@
           </div>
 
           <div class="field">
-            <label>Message <span style="color:var(--text-light-dim)">(optionnel)</span></label>
+            <label>Message <span style="color:var(--muted-dim)">(optionnel)</span></label>
             <textarea name="message" placeholder="Décrivez votre situation en quelques lignes…"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-gold btn-block btn-lg">Envoyer ma demande</button>
+          <button type="submit" class="btn btn-gold btn-block btn-lg" data-magnetic>Envoyer ma demande</button>
           <p class="form-note">Réponse sous 24 h.</p>
         </form>
 
         <div class="form-success" id="form-success">
           <div class="check" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M21 7L11 19l-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>Demande envoyée</h3>
-          <p>Merci ! Votre messagerie va s'ouvrir pour finaliser l'envoi. Nous revenons vers vous sous 24 h.</p>
+          <p>Merci ! Votre message nous est parvenu. Nous revenons vers vous sous 24 h.</p>
         </div>
       </div>
 
       <!-- Calendly -->
       <div class="panel calendly-panel reveal d1">
         <h2>Préférez réserver directement ?</h2>
-        <p class="p-sub">Choisissez un créneau de 30 min pour un premier échange. Gratuit, sans engagement.</p>
+        <p class="p-sub">30 min en visio pour un premier échange. Gratuit, sans engagement.</p>
 
         <ul class="cal-features">
           <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> 30 minutes en visio</li>
@@ -348,7 +466,8 @@
         <div class="calendly-inline-widget" data-url="https://calendly.com/perfimmo/30min" style="min-width:320px;height:630px;"></div>
         -->
 
-        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-block btn-lg" style="margin-top:auto;">Réserver un créneau <span class="arrow">→</span></a>
+        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-block btn-lg" data-magnetic style="margin-top:auto;">Réserver un créneau <span class="arrow">→</span></a>
+        <p class="form-note">Sans engagement · confirmation immédiate.</p>
       </div>
 
     </div>
@@ -368,13 +487,17 @@
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="footer" data-screen-label="Footer">
     <div class="wrap">
+      <div class="footer-cta reveal">
+        <h2>Arrêtons l'hémorragie.</h2>
+        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-lg" data-magnetic>Prendre RDV <span class="arrow">→</span></a>
+      </div>
       <div class="footer-top">
         <div>
           <a href="#hero" class="logo">
             <span class="mark" aria-hidden="true">
               <svg viewBox="0 0 32 32" fill="none">
-                <rect x="1" y="1" width="30" height="30" rx="3" stroke="#C9A84C" stroke-width="1.4"/>
-                <path d="M9 23V9h6.2c3 0 5 1.8 5 4.6 0 2.8-2 4.7-5 4.7H12.4V23H9z" fill="#C9A84C"/>
+                <rect x="1" y="1" width="30" height="30" rx="3" stroke="#B0552E" stroke-width="1.4"/>
+                <path d="M9 23V9h6.2c3 0 5 1.8 5 4.6 0 2.8-2 4.7-5 4.7H12.4V23H9z" fill="#B0552E"/>
               </svg>
             </span>
             Perf<b>immo</b>
@@ -385,22 +508,22 @@
           <h4>Navigation</h4>
           <a href="#method">Méthode</a>
           <a href="#offers">Offres &amp; tarifs</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
-          <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener">Prendre RDV</a>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
-          <a href="mailto:contact@perfimmo.fr">contact@perfimmo.fr</a>
+          <a href="mailto:contact@myperfimmo.fr">contact@myperfimmo.fr</a>
           <p>Zone d'intervention&nbsp;:<br />PACA + France métropolitaine</p>
         </div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Perfimmo. Tous droits réservés.</p>
-        <p><a href="#" style="color:var(--text-light-dim)">Mentions légales</a> · <a href="#" style="color:var(--text-light-dim)">Confidentialité</a></p>
+        <p><a href="#" style="color:var(--on-dark-dim)">Mentions légales</a> · <a href="#" style="color:var(--on-dark-dim)">Confidentialité</a></p>
       </div>
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="main.js?v=4"></script>
 </body>
 </html>
