@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#F4F0E8" />
   <title>Perfimmo — Performance commerciale pour agences immobilières</title>
   <meta name="description" content="Perfimmo audite vos pratiques commerciales et votre CRM pour transformer vos agents en closers. Diagnostic, transformation et suivi pour agences de 5 à 20 agents." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css?v=4" />
   <!-- ext-resource-dependency: three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -28,7 +29,7 @@
             <text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-family="'Playfair Display', serif" font-weight="700" font-size="26" fill="#FBF9F3" class="pl-p">P</text>
           </svg>
         </span>
-        <span class="pl-word">Perf<b>immo</b></span>
+        <span class="pl-word">Perf<b style="color:var(--sienna)">immo</b></span>
       </div>
       <div class="pl-bar"><span class="pl-fill" id="pl-fill"></span></div>
       <div class="pl-count"><span id="pl-num">0</span><span class="pl-pct">%</span></div>
@@ -45,7 +46,7 @@
             <text x="16" y="17" text-anchor="middle" dominant-baseline="central" font-family="'Playfair Display', serif" font-weight="700" font-size="21" fill="#FBF9F3">P</text>
           </svg>
         </span>
-        Perf<b>immo</b>
+        Perf<b style="color:var(--sienna)">immo</b>
       </a>
       <nav class="nav-links" aria-label="Navigation principale">
         <a href="#method" class="link"><span>Méthode</span></a>
@@ -53,7 +54,7 @@
         <a href="#faq" class="link"><span>FAQ</span></a>
         <a href="#contact" class="link"><span>Contact</span></a>
       </nav>
-      <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold nav-cta" data-magnetic>Prendre RDV</a>
+      <a href="https://calendly.com/contact-myperfimmo/30min" target="_blank" rel="noopener" class="btn btn-gold nav-cta" data-magnetic>Prendre RDV</a>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -66,7 +67,7 @@
     <a href="#offers">Offres</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
-    <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Prendre RDV</a>
+    <a href="https://calendly.com/contact-myperfimmo/30min" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Prendre RDV</a>
   </div>
 
   <!-- ============ HERO ============ -->
@@ -81,7 +82,7 @@
       <p class="sub anim-fade">Vos agents travaillent. Les mandats partent quand même chez le concurrent. C'est un problème de méthode et de CRM mal utilisé — pas de motivation.</p>
       <div class="hero-ctas anim-fade">
         <a href="#offers" class="btn btn-gold btn-lg" data-magnetic>Voir nos offres <span class="arrow">→</span></a>
-        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-magnetic>Prendre RDV</a>
+        <a href="https://calendly.com/contact-myperfimmo/30min" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-magnetic>Prendre RDV</a>
       </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
@@ -371,10 +372,11 @@
 
       <!-- Form -->
       <div class="panel reveal">
-        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-          <input type="hidden" name="form-name" value="contact" />
+        <form id="contact-form" novalidate>
+          <input type="hidden" name="_subject" value="Nouvelle demande Perfimmo" />
+          <input type="hidden" name="_captcha" value="false" />
           <p class="hp-field" style="position:absolute;left:-9999px;" aria-hidden="true">
-            <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            <label>Ne pas remplir : <input name="_honey" tabindex="-1" autocomplete="off" /></label>
           </p>
           <h2>Une question ? Un projet ?</h2>
           <p class="p-sub">Parlez-nous de votre agence. On vous répond avec une première lecture, pas un argumentaire.</p>
@@ -463,10 +465,10 @@
         <!-- Calendly inline widget (optionnel) — décommenter pour activer le widget intégré
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
         <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <div class="calendly-inline-widget" data-url="https://calendly.com/perfimmo/30min" style="min-width:320px;height:630px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/contact-myperfimmo/30min/30min" style="min-width:320px;height:630px;"></div>
         -->
 
-        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-block btn-lg" data-magnetic style="margin-top:auto;">Réserver un créneau <span class="arrow">→</span></a>
+        <a href="https://calendly.com/contact-myperfimmo/30min" target="_blank" rel="noopener" class="btn btn-gold btn-block btn-lg" data-magnetic style="margin-top:auto;">Réserver un créneau <span class="arrow">→</span></a>
         <p class="form-note">Sans engagement · confirmation immédiate.</p>
       </div>
 
@@ -489,7 +491,7 @@
     <div class="wrap">
       <div class="footer-cta reveal">
         <h2>Arrêtons l'hémorragie.</h2>
-        <a href="https://calendly.com/perfimmo" target="_blank" rel="noopener" class="btn btn-gold btn-lg" data-magnetic>Prendre RDV <span class="arrow">→</span></a>
+        <a href="https://calendly.com/contact-myperfimmo/30min" target="_blank" rel="noopener" class="btn btn-gold btn-lg" data-magnetic>Prendre RDV <span class="arrow">→</span></a>
       </div>
       <div class="footer-top">
         <div>
@@ -500,7 +502,7 @@
                 <path d="M9 23V9h6.2c3 0 5 1.8 5 4.6 0 2.8-2 4.7-5 4.7H12.4V23H9z" fill="#B0552E"/>
               </svg>
             </span>
-            Perf<b>immo</b>
+            Perf<b style="color:var(--sienna-bright)">immo</b>
           </a>
           <p class="footer-blurb">La performance commerciale des agences immobilières. Audit, transformation, suivi — orienté ventes récupérées.</p>
         </div>

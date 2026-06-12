@@ -282,11 +282,14 @@
       var submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
 
-      fetch('/', {
+      fetch('https://formsubmit.co/ajax/contact@myperfimmo.fr', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
         body: encoded.toString()
-      }).then(function () {
+      }).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        if (!json.success) throw new Error('formsubmit');
         form.style.display = 'none';
         if (success) success.classList.add('show');
       }).catch(function () {
