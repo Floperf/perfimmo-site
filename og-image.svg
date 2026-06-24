@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#221C14"/>
+  <!-- Bande de contenu OG : y 285 -> 915 (630px de haut) -->
+  <rect x="0" y="285" width="1200" height="8" fill="#B0552E"/>
+
+  <!-- Logo -->
+  <rect x="80" y="360" width="64" height="64" rx="15" fill="#B0552E"/>
+  <text x="112" y="406" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-weight="700" font-size="40" fill="#FBF9F3">P</text>
+  <text x="162" y="404" font-family="Georgia, 'Playfair Display', serif" font-size="34" fill="#FBF9F3">Perf<tspan font-weight="700" fill="#D9885A">immo</tspan></text>
+
+  <!-- Headline -->
+  <text x="80" y="560" font-family="Georgia, 'Playfair Display', serif" font-weight="700" font-size="62" fill="#FBF9F3">Vos ventes partent</text>
+  <text x="80" y="636" font-family="Georgia, 'Playfair Display', serif" font-weight="700" font-size="62" fill="#FBF9F3">chez le concurrent.</text>
+  <text x="80" y="712" font-family="Georgia, 'Playfair Display', serif" font-weight="700" font-size="62" fill="#D9885A">On les récupère.</text>
+
+  <!-- Subline -->
+  <text x="80" y="790" font-family="Arial, 'Inter', sans-serif" font-size="24" fill="#9A8A74">Audit CRM &amp; process commerciaux · Agences immobilières de 5 à 20 agents</text>
+
+  <!-- URL -->
+  <text x="80" y="852" font-family="Arial, 'Inter', sans-serif" font-weight="700" font-size="24" fill="#D9885A">myperfimmo.fr</text>
+</svg>
